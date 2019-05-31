@@ -1,7 +1,7 @@
 #ifndef RL_ALGORITHMS_LIB_SORT_MERGE_SORT_HPP
 #define RL_ALGORITHMS_LIB_SORT_MERGE_SORT_HPP
 
-#include "utils.hpp"
+#include "../utils.hpp"
 
 namespace sort {
 

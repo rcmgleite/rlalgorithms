@@ -1,7 +1,7 @@
 #include "gtest/gtest.h"
 #include <string>
 #include <vector>
-#include "../../lib/sort/merge_sort.hpp"
+#include "../../lib/sort/merge_sort/merge_sort.hpp"
 
 namespace unit_tests {
 
