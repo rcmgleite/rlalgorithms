@@ -18,6 +18,7 @@ include_directories(
 set(UNIT_TEST_FILES
   ${UNIT_TESTS_PATH}/binary_search.cpp
   ${UNIT_TESTS_PATH}/merge_sort.cpp
+  ${UNIT_TESTS_PATH}/binary_heap.cpp
 )
 
 add_executable(unit_tests ${UNIT_TEST_FILES})
