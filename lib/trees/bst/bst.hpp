@@ -8,6 +8,10 @@ using std::endl;
 
 namespace trees {
 
+/**
+ * Node representation.
+ * Currently key and value are the same and can only hold int values.
+ */
 class Node {
 public:
   int key;
@@ -21,6 +25,9 @@ public:
   }
 };
 
+/**
+ * Bst representation.
+ */
 class BST {
 private:
   Node* _root;
@@ -56,6 +63,9 @@ void print_in_order(Node* n) {
 }
 
 public:
+  /**
+   * Get key from bst.
+   */
   int get(int key) {
     auto iter = _root;
 
@@ -74,14 +84,67 @@ public:
     return -1;
   }
 
+  /**
+   * Add new key to bst.
+   */
   void put(int key) {
     _root = put(_root, key);
   }
 
+  /**
+   * Remove a node from bst.
+   */
   void remove(int key) {
-
+    // TODO
   }
 
+  /**
+   * Min value inside bst.
+   */
+  int min() {
+    Node* n = _root;
+
+    int min = -1;
+    while(n) {
+      min = n->key;
+      n = n->left;
+    }
+
+    return min;
+  }
+
+  /**
+   * Max key inside bst.
+   */
+  int max() {
+    Node* n = _root;
+
+    int max = -1;
+    while(n) {
+      max = n->key;
+      n = n->right;
+    }
+
+    return max;
+  }
+
+  /**
+   * Largest key <= @key.
+   */
+  int floor(int key) {
+    return -1;
+  }
+
+  /**
+   * Smallest key >= @key.
+   */
+  int ceiling(int key) {
+    return -1;
+  }
+
+  /**
+   * Print bst in order (sorted).
+   */
   void print_in_order() {
     print_in_order(_root);
     cout << endl;
