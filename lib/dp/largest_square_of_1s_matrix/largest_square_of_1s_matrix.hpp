@@ -23,7 +23,12 @@ int largest_square_of_1s_matrix(vector<vector<int>> m, int i, int j, int& result
     return memo[i][j];
   }
 
-  memo[i][j] = m[i][j] + min(largest_square_of_1s_matrix(m, i + 1, j, result, memo), largest_square_of_1s_matrix(m, i, j + 1, result, memo));
+  memo[i][j] = m[i][j] + min({
+    largest_square_of_1s_matrix(m, i + 1, j, result, memo),
+    largest_square_of_1s_matrix(m, i, j + 1, result, memo),
+    largest_square_of_1s_matrix(m, i + 1, j + 1, result, memo)
+  });
+
   result = max(result, memo[i][j]);
 
   return memo[i][j];

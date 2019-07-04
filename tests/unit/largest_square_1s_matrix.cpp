@@ -43,5 +43,19 @@ TEST(DP, LARGEST_SQUARE_OF_1S_MATRIX_3) {
   EXPECT_EQ(result, 2);
 }
 
+TEST(DP, LARGEST_SQUARE_OF_1S_MATRIX_4) {
+  vector<vector<int>>m = {
+    {0, 0, 0, 1, 1},
+    {0, 0, 0, 1, 0},
+    {0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0}, 
+  };
+
+  int result = dp::largest_square_of_1s_matrix(m);
+  EXPECT_EQ(result, 1);
+}
+
+
+
 };
 
