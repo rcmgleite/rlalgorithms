@@ -52,6 +52,48 @@ Node* put(Node* n, int key) {
   return n;
 }
 
+int floor(Node* n, int input) {
+  if (n == nullptr) {
+    return -1;
+  }
+
+  if (input == n->key) {
+    return input;
+  }
+
+  if (input < n->key) {
+    return floor(n->left, input);
+  }
+
+  int f = floor(n->right, input);
+  if (f != -1) {
+    return f;
+  }
+
+  return n->key;
+}
+
+int ceiling(Node* n, int input) {
+  if (n == nullptr) {
+    return -1;
+  }
+
+  if (input == n->key) {
+    return input;
+  }
+
+  if (input > n->key) {
+    return ceiling(n->right, input);
+  }
+
+  int c = ceiling(n->left, input);
+  if (c != -1) {
+    return c;
+  }
+
+  return n->key;
+}
+
 void print_in_order(Node* n) {
   if (n == nullptr) {
     return;
@@ -131,15 +173,15 @@ public:
   /**
    * Largest key <= @key.
    */
-  int floor(int key) {
-    return -1;
+  int floor(int input) {
+    return floor(_root, input);
   }
 
   /**
    * Smallest key >= @key.
    */
-  int ceiling(int key) {
-    return -1;
+  int ceiling(int input) {
+    return ceiling(_root, input);
   }
 
   /**
