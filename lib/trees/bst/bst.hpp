@@ -6,19 +6,22 @@
 using std::cout;
 using std::endl;
 
-namespace trees {
+namespace trees
+{
 
 /**
  * Node representation.
  * Currently key and value are the same and can only hold int values.
  */
-class Node {
+class Node
+{
 public:
   int key;
-  Node* left;
-  Node* right; 
+  Node *left;
+  Node *right;
 
-  Node(int key) {
+  Node(int key)
+  {
     this->key = key;
     this->left = nullptr;
     this->right = nullptr;
@@ -28,97 +31,121 @@ public:
 /**
  * Bst representation.
  */
-class BST {
+class BST
+{
 private:
-  Node* _root;
+  Node *_root;
 
 private:
+  Node *put(Node *n, int key)
+  {
+    if (n == nullptr)
+    {
+      return new Node(key);
+    }
 
-Node* put(Node* n, int key) {
-  if (n == nullptr) {
-    return new Node(key);
-  }
+    if (n->key == key)
+    {
+      return n;
+    }
 
-  if (n->key == key) {
+    if (key > n->key)
+    {
+      n->right = put(n->right, key);
+    }
+    else
+    {
+      n->left = put(n->left, key);
+    }
+
     return n;
   }
 
-  if (key > n->key) {
-    n->right = put(n->right, key);
-  } else {
-    n->left = put(n->left, key);
+  int floor(Node *n, int input)
+  {
+    if (n == nullptr)
+    {
+      return -1;
+    }
+
+    if (input == n->key)
+    {
+      return input;
+    }
+
+    if (input < n->key)
+    {
+      return floor(n->left, input);
+    }
+
+    int f = floor(n->right, input);
+    if (f != -1)
+    {
+      return f;
+    }
+
+    return n->key;
   }
 
-  return n;
-}
+  int ceiling(Node *n, int input)
+  {
+    if (n == nullptr)
+    {
+      return -1;
+    }
 
-int floor(Node* n, int input) {
-  if (n == nullptr) {
-    return -1;
+    if (input == n->key)
+    {
+      return input;
+    }
+
+    if (input > n->key)
+    {
+      return ceiling(n->right, input);
+    }
+
+    int c = ceiling(n->left, input);
+    if (c != -1)
+    {
+      return c;
+    }
+
+    return n->key;
   }
 
-  if (input == n->key) {
-    return input;
+  void print_in_order(Node *n)
+  {
+    if (n == nullptr)
+    {
+      return;
+    }
+
+    print_in_order(n->left);
+    cout << n->key << " ";
+    print_in_order(n->right);
   }
-
-  if (input < n->key) {
-    return floor(n->left, input);
-  }
-
-  int f = floor(n->right, input);
-  if (f != -1) {
-    return f;
-  }
-
-  return n->key;
-}
-
-int ceiling(Node* n, int input) {
-  if (n == nullptr) {
-    return -1;
-  }
-
-  if (input == n->key) {
-    return input;
-  }
-
-  if (input > n->key) {
-    return ceiling(n->right, input);
-  }
-
-  int c = ceiling(n->left, input);
-  if (c != -1) {
-    return c;
-  }
-
-  return n->key;
-}
-
-void print_in_order(Node* n) {
-  if (n == nullptr) {
-    return;
-  }
-
-  print_in_order(n->left);
-  cout << n->key << " ";
-  print_in_order(n->right);
-}
 
 public:
   /**
    * Get key from bst.
    */
-  int get(int key) {
+  int get(int key)
+  {
     auto iter = _root;
 
-    while(iter) {
-      if (key == iter->key) {
+    while (iter)
+    {
+      if (key == iter->key)
+      {
         return iter->key;
       }
 
-      if (key > iter->key) {
+      if (key > iter->key)
+      {
         iter = iter->right;
-      } else {
+      }
+      else
+      {
         iter = iter->left;
       }
     }
@@ -129,25 +156,29 @@ public:
   /**
    * Add new key to bst.
    */
-  void put(int key) {
+  void put(int key)
+  {
     _root = put(_root, key);
   }
 
   /**
    * Remove a node from bst.
    */
-  void remove(int key) {
+  void remove(int key)
+  {
     // TODO
   }
 
   /**
    * Min value inside bst.
    */
-  int min() {
-    Node* n = _root;
+  int min()
+  {
+    Node *n = _root;
 
     int min = -1;
-    while(n) {
+    while (n)
+    {
       min = n->key;
       n = n->left;
     }
@@ -158,11 +189,13 @@ public:
   /**
    * Max key inside bst.
    */
-  int max() {
-    Node* n = _root;
+  int max()
+  {
+    Node *n = _root;
 
     int max = -1;
-    while(n) {
+    while (n)
+    {
       max = n->key;
       n = n->right;
     }
@@ -173,26 +206,29 @@ public:
   /**
    * Largest key <= @key.
    */
-  int floor(int input) {
+  int floor(int input)
+  {
     return floor(_root, input);
   }
 
   /**
    * Smallest key >= @key.
    */
-  int ceiling(int input) {
+  int ceiling(int input)
+  {
     return ceiling(_root, input);
   }
 
   /**
    * Print bst in order (sorted).
    */
-  void print_in_order() {
+  void print_in_order()
+  {
     print_in_order(_root);
     cout << endl;
   }
 };
 
-};
+}; // namespace trees
 
 #endif
