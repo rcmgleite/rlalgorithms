@@ -6,7 +6,7 @@ set(GTEST_PATH ${CMAKE_CURRENT_SOURCE_DIR}/deps/googletest/googletest)
 set(GOOGLE_TEST_INCLUDE_PATH ${GTEST_PATH}/include)
 set(TESTS_PATH ${CMAKE_CURRENT_SOURCE_DIR}/tests)
 set(UNIT_TESTS_PATH ${TESTS_PATH}/unit)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -pthread -std=c++11 -Wall -Werror")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -g -pthread -std=c++11 -Wall -Werror")
 
 # Unit tests
 add_subdirectory(${GTEST_PATH})

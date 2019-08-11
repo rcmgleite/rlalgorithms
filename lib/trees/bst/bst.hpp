@@ -113,6 +113,65 @@ private:
     return n->key;
   }
 
+  Node *remove(Node *n, int key)
+  {
+    if (n == nullptr)
+    {
+      return nullptr;
+    }
+
+    if (key > n->key)
+    {
+      n->right = remove(n->right, key);
+    }
+    else if (key < n->key)
+    {
+      n->left = remove(n->left, key);
+    }
+    else
+    {
+      // At this point, we found the node to be deleted.
+      // We need to take care of 4 cases:
+      //   1. Node has 0 children.
+      if (n->left == nullptr && n->right == nullptr)
+      {
+        delete n;
+        return nullptr;
+      }
+
+      //   2. Node has only right child.
+      if (n->left == nullptr)
+      {
+        Node *ret = n->right;
+        delete n;
+        return ret;
+      }
+
+      //   3. Node has only left child.
+      if (n->right == nullptr)
+      {
+        Node *ret = n->left;
+        delete n;
+        return ret;
+      }
+
+      //   4. Node has both children.
+      // in this case we will:
+      //   1. find the smallest elem on the right subtree
+      //   2. delete this node from the right subtree
+      //   3. replace the node to be deleted with the minimum of the right subtree
+      Node *replacement = min_node(n->right);
+      Node *new_node = new Node(replacement->key);
+      new_node->right = remove(n->right, replacement->key);
+      new_node->left = n->left;
+
+      delete n;
+      n = new_node;
+    }
+
+    return n;
+  }
+
   void print_in_order(Node *n)
   {
     if (n == nullptr)
@@ -126,6 +185,14 @@ private:
   }
 
 public:
+  ~BST()
+  {
+    while (_root)
+    {
+      _root = remove(_root, _root->key);
+    }
+  }
+
   /**
    * Get key from bst.
    */
@@ -163,10 +230,11 @@ public:
 
   /**
    * Remove a node from bst.
+   * (Hibbard method)
    */
   void remove(int key)
   {
-    // TODO
+    _root = remove(_root, key);
   }
 
   /**
@@ -174,16 +242,32 @@ public:
    */
   int min()
   {
-    Node *n = _root;
-
-    int min = -1;
-    while (n)
+    Node *n = min_node();
+    if (n == nullptr)
     {
-      min = n->key;
+      return -1;
+    }
+    return n->key;
+  }
+
+  Node *min_node(Node *n)
+  {
+    if (n == nullptr)
+    {
+      return nullptr;
+    }
+
+    while (n->left)
+    {
       n = n->left;
     }
 
-    return min;
+    return n;
+  }
+
+  Node *min_node()
+  {
+    return min_node(_root);
   }
 
   /**

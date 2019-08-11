@@ -115,4 +115,42 @@ TEST(TREES_BST, CEILING_2)
   EXPECT_EQ(bst.ceiling(13), -1);
 }
 
+TEST(TREES_BST, INSERT_REMOVE)
+{
+  auto bst = trees::BST();
+  bst.put(10);
+  bst.put(7);
+  bst.put(2);
+  bst.put(5);
+  bst.put(8);
+  bst.put(9);
+  bst.put(1);
+  bst.put(12);
+
+  bst.remove(2);
+  EXPECT_EQ(bst.get(2), -1);
+  EXPECT_EQ(bst.get(1), 1);
+  EXPECT_EQ(bst.get(5), 5);
+
+  bst.remove(10);
+  EXPECT_EQ(bst.get(5), 5);
+
+  bst.remove(9);
+  EXPECT_EQ(bst.get(9), -1);
+
+  bst.remove(12);
+  EXPECT_EQ(bst.get(12), -1);
+  bst.remove(8);
+  EXPECT_EQ(bst.get(8), -1);
+
+  bst.remove(7);
+  EXPECT_EQ(bst.get(7), -1);
+
+  bst.remove(1);
+  EXPECT_EQ(bst.get(1), -1);
+
+  bst.remove(5);
+  EXPECT_EQ(bst.get(5), -1);
+}
+
 }; // namespace unit_tests

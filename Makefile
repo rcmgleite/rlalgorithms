@@ -22,9 +22,6 @@ test: mkdir_build run_cmake build_tests run_tests
 
 test_valgrind: mkdir_build run_cmake build_tests run_tests_valgrind
 
-performance_test: mkdir_build run_cmake 
-	cd build && $(MAKE) performance_tests && ./performance_tests
-
 clean:
 	$(RM) -r build
 
