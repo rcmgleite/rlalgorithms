@@ -21,6 +21,7 @@ set(UNIT_TEST_FILES
   ${UNIT_TESTS_PATH}/binary_heap.cpp
   ${UNIT_TESTS_PATH}/bst.cpp
   ${UNIT_TESTS_PATH}/largest_square_1s_matrix.cpp
+  ${UNIT_TESTS_PATH}/truck_path.cpp
 )
 
 add_executable(unit_tests ${UNIT_TEST_FILES})
