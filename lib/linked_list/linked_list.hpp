@@ -2,9 +2,11 @@
 #define RL_ALGORITHMS_LINKED_LIST_LINKED_LIST_HPP
 
 #include <iostream>
+#include <map>
 
 using std::cout;
 using std::endl;
+using std::map;
 
 namespace linked_list
 {
@@ -54,6 +56,13 @@ public:
     n->next = p;
   }
 
+  void remove_node(Node **n)
+  {
+    Node *aux = *n;
+    *n = (*n)->next;
+    delete aux;
+  }
+
   void remove(int value)
   {
     Node **cur = &head;
@@ -62,12 +71,30 @@ public:
       Node *entry = *cur;
       if (entry->value == value)
       {
-        *cur = entry->next;
-        delete entry;
+        remove_node(cur);
         return;
       }
 
       cur = &(*cur)->next;
+    }
+  }
+
+  void remove_duplicates_map()
+  {
+    map<int, Node **> duplicates;
+    Node **cur = &head;
+
+    while (*cur)
+    {
+      if (duplicates[(*cur)->value])
+      {
+        remove_node(cur);
+      }
+      else
+      {
+        duplicates[(*cur)->value] = cur;
+        cur = &(*cur)->next;
+      }
     }
   }
 
