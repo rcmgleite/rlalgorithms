@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include "../../lib/trees/bst/bst.hpp"
+#include "../../lib/trees/bst/sorted_array_to_bst.hpp"
 
 namespace unit_tests
 {
@@ -151,6 +152,41 @@ TEST(TREES_BST, INSERT_REMOVE)
 
   bst.remove(5);
   EXPECT_EQ(bst.get(5), -1);
+}
+
+TEST(TREES_BST, MAX_MIN_DEPTH)
+{
+  auto bst = trees::BST();
+
+  bst.put(10);
+  bst.put(7);
+  bst.put(2);
+  bst.put(5);
+  bst.put(8);
+  bst.put(9);
+  bst.put(1);
+  bst.put(12);
+
+  EXPECT_EQ(bst.max_depth(), 4);
+  EXPECT_EQ(bst.min_depth(), 2);
+}
+
+TEST(TREES_BST, SORTED_ARRAY_TO_BST_1)
+{
+  std::vector<int> a = {1, 2, 3, 4, 5, 6, 7};
+  auto bst = trees::toBST(a);
+
+  EXPECT_EQ(bst.max_depth(), 3);
+  EXPECT_EQ(bst.min_depth(), 3);
+}
+
+TEST(TREES_BST, SORTED_ARRAY_TO_BST_2)
+{
+  std::vector<int> a = {1, 2, 3, 4, 5, 6, 7, 8};
+  auto bst = trees::toBST(a);
+
+  EXPECT_EQ(bst.max_depth(), 4);
+  EXPECT_EQ(bst.min_depth(), 3);
 }
 
 }; // namespace unit_tests

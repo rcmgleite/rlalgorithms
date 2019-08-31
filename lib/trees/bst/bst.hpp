@@ -2,6 +2,7 @@
 #define RL_ALGORITHMS_LIB_TREES_BST_HPP
 
 #include <iostream>
+#include <algorithm>
 
 using std::cout;
 using std::endl;
@@ -20,13 +21,8 @@ public:
   Node *left;
   Node *right;
 
-  Node(int key)
-  {
-    this->key = key;
-    this->left = nullptr;
-    this->right = nullptr;
-  }
-};
+  Node(int key) : key(key), left(nullptr), right(nullptr) { }
+  };
 
 /**
  * Bst representation.
@@ -172,6 +168,26 @@ private:
     return n;
   }
 
+  int max_depth(Node *n)
+  {
+    if (n == nullptr)
+    {
+      return 0;
+    }
+
+    return 1 + std::max(max_depth(n->left), max_depth(n->right));
+  }
+
+  int min_depth(Node *n)
+  {
+    if (n == nullptr)
+    {
+      return 0;
+    }
+
+    return 1 + std::min(min_depth(n->left), min_depth(n->right));
+  }
+
   void print_in_order(Node *n)
   {
     if (n == nullptr)
@@ -185,6 +201,8 @@ private:
   }
 
 public:
+  BST() : _root(nullptr) {}
+
   ~BST()
   {
     while (_root)
@@ -301,6 +319,16 @@ public:
   int ceiling(int input)
   {
     return ceiling(_root, input);
+  }
+
+  int max_depth()
+  {
+    return max_depth(_root);
+  }
+
+  int min_depth()
+  {
+    return min_depth(_root);
   }
 
   /**
