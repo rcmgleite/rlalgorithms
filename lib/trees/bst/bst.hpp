@@ -2,13 +2,19 @@
 #define RL_ALGORITHMS_LIB_TREES_BST_HPP
 
 #include <iostream>
+#include <vector>
+#include <queue>
 #include <algorithm>
+
+#include "../../linked_list/linked_list.hpp"
 
 using std::cout;
 using std::endl;
 
 namespace trees
 {
+using linked_list::Linked_list;
+using std::vector;
 
 /**
  * Node representation.
@@ -21,8 +27,8 @@ public:
   Node *left;
   Node *right;
 
-  Node(int key) : key(key), left(nullptr), right(nullptr) { }
-  };
+  Node(int key) : key(key), left(nullptr), right(nullptr) {}
+};
 
 /**
  * Bst representation.
@@ -188,6 +194,49 @@ private:
     return 1 + std::min(min_depth(n->left), min_depth(n->right));
   }
 
+  typedef struct Node_with_level
+  {
+    Node_with_level(Node *n, int level) : n(n), level(level) {}
+
+    Node *n;
+    int level;
+  } Node_with_level;
+
+  vector<Linked_list *> find_level_link_list(Node *n)
+  {
+    int depth = max_depth(n);
+    vector<Linked_list *> result(depth);
+
+    std::queue<Node_with_level> queue;
+    queue.push(Node_with_level(n, 0));
+
+    while (!queue.empty())
+    {
+      auto current_node = queue.front();
+      queue.pop();
+
+      if (result[current_node.level] == nullptr)
+      {
+        result[current_node.level] = new Linked_list();
+      }
+
+      auto l = result[current_node.level];
+      l->push_back(current_node.n->key);
+
+      if (current_node.n->left)
+      {
+        queue.push(Node_with_level(current_node.n->left, current_node.level + 1));
+      }
+
+      if (current_node.n->right)
+      {
+        queue.push(Node_with_level(current_node.n->right, current_node.level + 1));
+      }
+    }
+
+    return result;
+  }
+
   void print_in_order(Node *n)
   {
     if (n == nullptr)
@@ -329,6 +378,11 @@ public:
   int min_depth()
   {
     return min_depth(_root);
+  }
+
+  vector<Linked_list *> find_level_link_list()
+  {
+    return find_level_link_list(_root);
   }
 
   /**

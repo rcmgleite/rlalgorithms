@@ -23,9 +23,10 @@ class Linked_list
 {
 private:
   Node *head;
+  int _size;
 
 public:
-  Linked_list() : head(nullptr) {}
+  Linked_list() : head(nullptr), _size(0) {}
   ~Linked_list()
   {
     Node *p = head;
@@ -46,6 +47,7 @@ public:
     }
 
     *cur = new Node(value);
+    _size++;
   }
 
   void push_front(int value)
@@ -54,6 +56,7 @@ public:
     Node *n = new Node(value);
     head = n;
     n->next = p;
+    _size++;
   }
 
   void remove_node(Node **n)
@@ -61,6 +64,7 @@ public:
     Node *aux = *n;
     *n = (*n)->next;
     delete aux;
+    _size--;
   }
 
   void remove(int value)
@@ -126,6 +130,11 @@ public:
     }
 
     cout << endl;
+  }
+
+  int size()
+  {
+    return _size;
   }
 };
 

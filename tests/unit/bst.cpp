@@ -189,4 +189,25 @@ TEST(TREES_BST, SORTED_ARRAY_TO_BST_2)
   EXPECT_EQ(bst.min_depth(), 3);
 }
 
+TEST(TREES_BST, FIND_LEVEL_LINK_LIST)
+{
+  std::vector<int> a = {1, 2, 3, 4, 5, 6, 7, 8};
+  auto bst = trees::toBST(a);
+
+  vector<linked_list::Linked_list *> result = bst.find_level_link_list();
+  EXPECT_EQ(result[0]->get_nth(0), 4);
+  EXPECT_EQ(result[1]->get_nth(0), 2);
+  EXPECT_EQ(result[1]->get_nth(1), 6);
+  EXPECT_EQ(result[2]->get_nth(0), 1);
+  EXPECT_EQ(result[2]->get_nth(1), 3);
+  EXPECT_EQ(result[2]->get_nth(2), 5);
+  EXPECT_EQ(result[2]->get_nth(3), 7);
+  EXPECT_EQ(result[3]->get_nth(0), 8);
+
+  for (auto v : result)
+  {
+    delete v;
+  }
+}
+
 }; // namespace unit_tests
