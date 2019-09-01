@@ -24,6 +24,7 @@ set(UNIT_TEST_FILES
   ${UNIT_TESTS_PATH}/truck_path.cpp
   ${UNIT_TESTS_PATH}/zero_row_column.cpp
   ${UNIT_TESTS_PATH}/linked_list.cpp
+  ${UNIT_TESTS_PATH}/all_subsets_of_a_set.cpp
 )
 
 add_executable(unit_tests ${UNIT_TEST_FILES})
