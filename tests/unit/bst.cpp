@@ -210,4 +210,93 @@ TEST(TREES_BST, FIND_LEVEL_LINK_LIST)
   }
 }
 
+TEST(TREES_BST, CONTAINS_TREE_1)
+{
+  trees::BST bst1;
+
+  bst1.put(10);
+  bst1.put(5);
+  bst1.put(2);
+  bst1.put(7);
+  bst1.put(21);
+
+  trees::BST bst2;
+  bst2.put(5);
+  bst2.put(2);
+  bst2.put(7);
+
+  EXPECT_TRUE(bst1.contains_tree(bst2));
+}
+
+TEST(TREES_BST, CONTAINS_TREE_2)
+{
+  trees::BST bst1;
+
+  bst1.put(10);
+  bst1.put(5);
+  bst1.put(2);
+  bst1.put(7);
+  bst1.put(21);
+
+  trees::BST bst2;
+  bst2.put(5);
+  bst2.put(3);
+  bst2.put(7);
+
+  EXPECT_FALSE(bst1.contains_tree(bst2));
+}
+
+TEST(TREES_BST, CONTAINS_TREE_3)
+{
+  trees::BST bst1;
+
+  bst1.put(10);
+  bst1.put(5);
+  bst1.put(2);
+  bst1.put(7);
+  bst1.put(21);
+
+  trees::BST bst2;
+
+  EXPECT_TRUE(bst1.contains_tree(bst2));
+}
+
+TEST(TREES_BST, CONTAINS_TREE_4)
+{
+  trees::BST bst1;
+
+  bst1.put(10);
+  bst1.put(5);
+  bst1.put(2);
+  bst1.put(7);
+  bst1.put(21);
+
+  trees::BST bst2;
+  bst2.put(10);
+  bst2.put(5);
+  bst2.put(7);
+  bst2.put(21);
+
+  EXPECT_TRUE(bst1.contains_tree(bst2));
+}
+
+TEST(TREES_BST, CONTAINS_TREE_5)
+{
+  trees::BST bst1;
+
+  bst1.put(10);
+  bst1.put(5);
+  bst1.put(2);
+  bst1.put(7);
+  bst1.put(21);
+
+  trees::BST bst2;
+  bst2.put(10);
+  bst2.put(5);
+  bst2.put(7);
+  bst2.put(22);
+
+  EXPECT_FALSE(bst1.contains_tree(bst2));
+}
+
 }; // namespace unit_tests

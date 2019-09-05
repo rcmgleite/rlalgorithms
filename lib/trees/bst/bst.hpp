@@ -237,6 +237,49 @@ private:
     return result;
   }
 
+  bool tree_match(Node *lhs, Node *rhs)
+  {
+    // matching tree finished. this means that
+    // we found a subtree
+    if (rhs == nullptr)
+    {
+      return true;
+    }
+
+    // original tree finished before testing tree.. not match
+    if (lhs == nullptr)
+    {
+      return false;
+    }
+
+    // keys don't match... not a subtree
+    if (lhs->key != rhs->key)
+    {
+      return false;
+    }
+
+    // if both sides return true, then we got a match
+    return tree_match(lhs->left, rhs->left) && tree_match(lhs->right, rhs->right);
+  }
+
+  bool sub_tree(Node *lhs, Node *rhs)
+  {
+    if (lhs == nullptr)
+    {
+      return false;
+    }
+
+    if (lhs->key == rhs->key)
+    {
+      if (tree_match(lhs, rhs))
+      {
+        return true;
+      }
+    }
+
+    return sub_tree(lhs->left, rhs) || sub_tree(lhs->right, rhs);
+  }
+
   void print_in_order(Node *n)
   {
     if (n == nullptr)
@@ -383,6 +426,19 @@ public:
   vector<Linked_list *> find_level_link_list()
   {
     return find_level_link_list(_root);
+  }
+
+  /**
+   *  returns true if @bst is a subtree of the given tree.
+   */
+  bool contains_tree(BST &bst)
+  {
+    if (bst._root == nullptr)
+    {
+      return true;
+    }
+
+    return sub_tree(_root, bst._root);
   }
 
   /**
