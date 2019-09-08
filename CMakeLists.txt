@@ -29,6 +29,7 @@ set(UNIT_TEST_FILES
   ${UNIT_TESTS_PATH}/all_valid_parentheses.cpp
   ${UNIT_TESTS_PATH}/paint_fill.cpp
   ${UNIT_TESTS_PATH}/n_queens.cpp
+  ${UNIT_TESTS_PATH}/sorted_matrix_search.cpp
 )
 
 add_executable(unit_tests ${UNIT_TEST_FILES})
