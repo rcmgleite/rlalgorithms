@@ -18,6 +18,7 @@ include_directories(
 set(UNIT_TEST_FILES
   ${UNIT_TESTS_PATH}/binary_search.cpp
   ${UNIT_TESTS_PATH}/merge_sort.cpp
+  ${UNIT_TESTS_PATH}/quick_sort.cpp
   ${UNIT_TESTS_PATH}/binary_heap.cpp
   ${UNIT_TESTS_PATH}/bst.cpp
   ${UNIT_TESTS_PATH}/largest_square_1s_matrix.cpp

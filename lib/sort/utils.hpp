@@ -1,8 +1,13 @@
 #ifndef RL_ALGORITHMS_LIB_SORT_UTILS_HPP
 #define RL_ALGORITHMS_LIB_SORT_UTILS_HPP
 
+#include <iostream>
+
 namespace sort
 {
+
+using std::cout;
+using std::endl;
 
 /*
  * Returns true if the vector is sorted.
@@ -24,6 +29,17 @@ bool is_sorted(const std::vector<T> &v)
   }
 
   return true;
+}
+
+template <typename T>
+void print_vector(const std::vector<T>& v)
+{
+  for (auto& item : v)
+  {
+    cout << item << " ";
+  }
+
+  cout << endl;
 }
 
 }; // namespace sort
