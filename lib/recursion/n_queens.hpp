@@ -13,9 +13,9 @@ using board_t = vector<vector<int>>;
 
 bool compare_boards(board_t &b1, board_t &b2)
 {
-  for (int i = 0; i < b1.size(); i++)
+  for (unsigned int i = 0; i < b1.size(); i++)
   {
-    for (int j = 0; j < b1[0].size(); j++)
+    for (unsigned int j = 0; j < b1[0].size(); j++)
     {
       if (b1[i][j] != b2[i][j])
       {
@@ -30,9 +30,9 @@ bool compare_boards(board_t &b1, board_t &b2)
 void print_board(board_t &b)
 {
   cout << "PRINT_BOARD_BEGIN" << endl;
-  for (int i = 0; i < b.size(); i++)
+  for (unsigned int i = 0; i < b.size(); i++)
   {
-    for (int j = 0; j < b[0].size(); j++)
+    for (unsigned int j = 0; j < b[0].size(); j++)
     {
       cout << b[i][j] << " ";
     }
@@ -44,9 +44,9 @@ void print_board(board_t &b)
 
 bool is_safe(board_t &b, int row, int col)
 {
-  for (int i = 0; i < b.size(); i++)
+  for (int i = 0; i < (int)b.size(); i++)
   {
-    for (int j = 0; j < b.size(); j++)
+    for (int j = 0; j < (int)b.size(); j++)
     {
       // row and column
       if (b[i][j] == 1 && (i == row || j == col))
@@ -68,13 +68,13 @@ bool is_safe(board_t &b, int row, int col)
 bool solve_n_queens(board_t &b, int row)
 {
   // Found solution.
-  if (row == b.size())
+  if (row == (int)b.size())
   {
     return true;
   }
 
   // test all columns for the given row
-  for (int col = 0; col < b[row].size(); col++)
+  for (unsigned int col = 0; col < b[row].size(); col++)
   {
     if (is_safe(b, row, col))
     {
@@ -123,7 +123,7 @@ bool is_safe_v2(vector<int> column_for_row, int row, int column)
 
 void print_column_for_row(const vector<int> &v)
 {
-  for (int i = 0; i < v.size(); i++)
+  for (unsigned int i = 0; i < v.size(); i++)
   {
     cout << v[i] << " ";
   }
@@ -133,12 +133,12 @@ void print_column_for_row(const vector<int> &v)
 bool solve_n_queens_v2(board_t &b, int row, vector<int> column_for_row)
 {
 
-  if (row == b.size())
+  if (row == (int)b.size())
   {
     return true;
   }
 
-  for (int col = 0; col < b[row].size(); col++)
+  for (unsigned int col = 0; col < b[row].size(); col++)
   {
     column_for_row[row] = col;
     if (is_safe_v2(column_for_row, row, col))

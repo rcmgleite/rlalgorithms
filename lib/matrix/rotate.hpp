@@ -15,9 +15,9 @@ using std::endl;
 void print_matrix_4_way(matrix_t &m)
 {
   cout << "Print matrix begin" << endl;
-  for (int i = 0; i < m.size(); i++)
+  for (unsigned int i = 0; i < m.size(); i++)
   {
-    for (int j = 0; j < m[0].size(); j++)
+    for (unsigned int j = 0; j < m[0].size(); j++)
     {
       cout << m[i][j] << " ";
     }
@@ -38,9 +38,9 @@ bool equals_4_way(matrix_t &lhs, matrix_t &rhs)
     return false;
   }
 
-  for (int i = 0; i < lhs.size(); i++)
+  for (unsigned int i = 0; i < lhs.size(); i++)
   {
-    for (int j = 0; j < rhs[0].size(); j++)
+    for (unsigned int j = 0; j < rhs[0].size(); j++)
     {
       if (lhs[i][j] != rhs[i][j])
       {

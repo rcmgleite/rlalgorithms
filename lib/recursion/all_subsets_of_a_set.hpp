@@ -33,7 +33,7 @@ void print(const all_subsets_t &a)
 
 void all_subsets_of_a_set(const vector<int> &set, int current_elem, all_subsets_t &result)
 {
-  if (current_elem >= set.size())
+  if (current_elem >= (int)set.size())
   {
     return;
   }

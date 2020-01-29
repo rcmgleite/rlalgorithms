@@ -24,7 +24,7 @@ void print(set<string> s)
   }
 }
 
-string add_parentheses_at(const string &s, int at)
+string add_parentheses_at(const string &s, unsigned int at)
 {
   if (at > s.size())
   {
@@ -32,7 +32,7 @@ string add_parentheses_at(const string &s, int at)
   }
 
   stringstream ss;
-  for (int i = 0; i < s.size(); i++)
+  for (unsigned int i = 0; i < s.size(); i++)
   {
     if (at == i)
     {
@@ -61,7 +61,7 @@ set<string> all_valid_parentheses(int n, set<string> &current, int index)
 
   for (auto &s : current)
   {
-    for (int i = 0; i <= s.size(); i++)
+    for (unsigned int i = 0; i <= s.size(); i++)
     {
       result.insert(add_parentheses_at(s, i));
     }

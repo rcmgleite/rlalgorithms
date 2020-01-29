@@ -47,7 +47,7 @@ Coordinate *sorted_search(vector<vector<int>> &m, int value)
   int i = 0;
   int j = m[0].size() - 1;
 
-  while (i < m[0].size() && j >= 0)
+  while (i < (int)m[0].size() && j >= 0)
   {
     if (m[i][j] == value)
     {

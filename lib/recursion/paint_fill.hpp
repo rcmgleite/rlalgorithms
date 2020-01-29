@@ -35,9 +35,9 @@ bool screen_compare(const screen_t &lhs, const screen_t &rhs)
     return false;
   }
 
-  for (int i = 0; i < lhs.size(); i++)
+  for (unsigned int i = 0; i < lhs.size(); i++)
   {
-    for (int j = 0; j < lhs[i].size(); j++)
+    for (unsigned int j = 0; j < lhs[i].size(); j++)
     {
       if (lhs[i][j] != rhs[i][j])
       {
@@ -52,9 +52,9 @@ bool screen_compare(const screen_t &lhs, const screen_t &rhs)
 void print_screen(const screen_t &s)
 {
   cout << "PRINT_SCREEN_BEGIN" << endl;
-  for (int i = 0; i < s.size(); i++)
+  for (unsigned int i = 0; i < s.size(); i++)
   {
-    for (int j = 0; j < s[i].size(); j++)
+    for (unsigned int j = 0; j < s[i].size(); j++)
     {
       cout << color_map[s[i][j]] << " ";
     }
@@ -66,7 +66,7 @@ void print_screen(const screen_t &s)
 
 void paint_fill(screen_t &s, int x, int y, int new_color, int original_color)
 {
-  if (x < 0 || x >= s.size() || y < 0 || y >= s[x].size())
+  if (x < 0 || x >= (int)s.size() || y < 0 || y >= (int)s[x].size())
   {
     return;
   }

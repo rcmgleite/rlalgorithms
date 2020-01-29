@@ -26,7 +26,7 @@ void print(const vector<string> &s)
 /**
  *  O(n) where n = s.size();
  */
-string add_char_at(const string &s, char c, int at)
+string add_char_at(const string &s, char c, unsigned int at)
 {
   if (at > s.size())
   {
@@ -34,7 +34,7 @@ string add_char_at(const string &s, char c, int at)
   }
 
   stringstream ss;
-  for (int i = 0; i < s.size(); i++)
+  for (unsigned int i = 0; i < s.size(); i++)
   {
     if (at == i)
     {
@@ -52,7 +52,7 @@ string add_char_at(const string &s, char c, int at)
   return ss.str();
 }
 
-vector<string> string_permutations(const string &s, int index, vector<string> &current_result)
+vector<string> string_permutations(const string &s, unsigned int index, vector<string> &current_result)
 {
   if (index >= s.size())
   {
@@ -60,10 +60,10 @@ vector<string> string_permutations(const string &s, int index, vector<string> &c
   }
 
   vector<string> result;
-  for (int i = 0; i < current_result.size(); i++)
+  for (unsigned int i = 0; i < current_result.size(); i++)
   {
 
-    for (int j = 0; j <= current_result[i].size(); j++)
+    for (unsigned int j = 0; j <= current_result[i].size(); j++)
     {
       result.push_back(add_char_at(current_result[i], s[index], j));
     }
