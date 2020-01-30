@@ -34,8 +34,6 @@ void quick_sort(vector<T>& vec)
  * 2. No entry in vec[lo] through vec[j - 1] is greater than vec[j].
  * 3. No entry in vec[j + 1] though vec[hi] is less than vec[j].
  */
-// 2, 10, 5, -1, 22, 99, 8
-// 
 template<typename T>
 int partition(vector<T>& vec, int lo, int hi)
 {
@@ -50,7 +48,7 @@ int partition(vector<T>& vec, int lo, int hi)
     while(vec[i] < partition_entry)
     {
       i++;
-      if (i == hi)
+      if (i >= hi)
       {
         break;
       }
@@ -61,7 +59,7 @@ int partition(vector<T>& vec, int lo, int hi)
     while(vec[j] > partition_entry)
     {
       j--;
-      if (j == lo) {
+      if (j <= lo) {
         break;
       }
     }
