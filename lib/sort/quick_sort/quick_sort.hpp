@@ -26,6 +26,41 @@ void quick_sort(vector<T>& vec)
   quick_sort(vec, 0, vec.size() - 1);
 }
 
+template<typename T>
+T nthsmallest(vector<T>& vec, int n)
+{
+  if (n >= (int)vec.size())
+  {
+    throw std::out_of_range("n bigger than vec size");
+  }
+
+  int lo = 0;
+  int hi = vec.size() - 1;
+
+  int p = -1;
+
+  while (p != n) {
+    p = partition(vec, lo, hi);
+
+    if (p == n)
+    {
+      break;
+    }
+
+    if (n > p)
+    {
+      lo = p + 1;
+    }
+
+    if (n < p)
+    {
+      hi = p - 1;
+    }
+  }
+
+  return vec[p];
+}
+
 /**
  * The partition method rearenges the array to make
  * the following three conditions hold:

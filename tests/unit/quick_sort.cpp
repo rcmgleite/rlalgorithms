@@ -49,4 +49,22 @@ TEST(QUICK_SORT, SORT_STRING_VECTOR)
   EXPECT_EQ(sort::is_sorted(v), true);
 }
 
+TEST(QUICK_SORT, NTH_SMALLEST)
+{
+  auto v1 = vector<int>({2, 10, 5, -1, 22, 99, 8, -4, 11, 14, 77, 3, 9});
+  auto v2 = vector<int>({2, 10, 5, -1, 22, 99, 8, -4, 11, 14, 77, 3, 9});
+
+  sort::quick_sort(v1);
+  EXPECT_EQ(sort::is_sorted(v1), true);
+
+  int smallest = sort::nthsmallest(v2, 0);
+  EXPECT_EQ(smallest, v1[0]);
+
+  int fifthSmallest = sort::nthsmallest(v2, 5);
+  EXPECT_EQ(fifthSmallest, v1[5]);
+
+  int biggest = sort::nthsmallest(v2, v2.size() - 1);
+  EXPECT_EQ(biggest, v1[v1.size() - 1]);
+}
+
 }; // namespace unit_tests
