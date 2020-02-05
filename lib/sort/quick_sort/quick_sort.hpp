@@ -80,23 +80,16 @@ int partition(vector<T>& vec, int lo, int hi)
   {
     // find element to the left of the partition_entry
     // that is bigger than the partition_entry
-    while(vec[i] < partition_entry)
+    while(i < hi && vec[i] < partition_entry)
     {
       i++;
-      if (i >= hi)
-      {
-        break;
-      }
     }
 
     // find element to the right of the partition_entry
     // that is less than the partition_entry
-    while(vec[j] > partition_entry)
+    while(j > lo && vec[j] > partition_entry)
     {
       j--;
-      if (j <= lo) {
-        break;
-      }
     }
 
     // If crossed, stop

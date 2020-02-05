@@ -33,6 +33,7 @@ set(UNIT_TEST_FILES
   ${UNIT_TESTS_PATH}/sorted_matrix_search.cpp
   ${UNIT_TESTS_PATH}/rotate.cpp
   ${UNIT_TESTS_PATH}/free_schedule.cpp
+  ${UNIT_TESTS_PATH}/lcs.cpp
 )
 
 add_executable(unit_tests ${UNIT_TEST_FILES})
